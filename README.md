@@ -324,8 +324,8 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 **SENAI Lucas do Rio Verde**
 - 📧 Email: miguel@docente.senai.br
 - 🌐 Website: [senaimt.ind.br](https://senaimt.ind.br)
-- 📱 Telefone: (65) 3549-8200
-- 📍 Endereço: Rua das Industrias, 1234 - Lucas do Rio Verde, MT
+- 📱 Telefone: (65) 3548-8600
+- 📍 Endereço: Rua Umuarama 675 S - Menino Deus - Lucas do Rio Verde, MT
 
 **Equipe de Desenvolvimento**
 - 👨‍💻 Lead Developer: [Miguel Nischor](mailto:miguel@docente.senai.br)
