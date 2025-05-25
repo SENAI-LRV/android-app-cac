@@ -1,3 +1,10 @@
+/*
+* Projeto: CAC - Cadê a Chave?
+* Arquivo: /app/build.gradle.kts
+* Descrição: Configuração do Gradle para o módulo de aplicativo Android.
+* Autor: Miguel Nischor <miguel@docente.senai.br>
+* Data: 24/05/2025
+*/
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -19,6 +26,7 @@ android {
     }
 
     buildTypes {
+        /* Otimização para compilações de lançamento */
         release {
             isMinifyEnabled = true
 
@@ -26,6 +34,12 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+
+        /* Adição de sufixo nas compilações de depuração */
+        debug {
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
         }
     }
 
@@ -44,22 +58,27 @@ android {
 }
 
 dependencies {
+    /* Implementações para compilação de teste */
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.ui.test.junit4)
     androidTestImplementation(platform(libs.androidx.compose.bom))
 
+    /* Implementações para compilação de depuração */
     debugImplementation(libs.androidx.ui.test.manifest)
     debugImplementation(libs.androidx.ui.tooling)
 
+    /* Implementações para compilação de lançamento */
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.room)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(platform(libs.androidx.compose.bom))
 
+    /* Implementações para compilação de teste */
     testImplementation(libs.junit)
 }
