@@ -5,16 +5,27 @@
 * Autor: Miguel Nischor <miguel@docente.senai.br>
 * Data: 24/05/2025
 */
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package br.edu.senai.cac
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import br.edu.senai.cac.ui.navigation.AppNavGraph
 import br.edu.senai.cac.ui.theme.CACTheme
 
@@ -33,8 +44,24 @@ class MainActivity : ComponentActivity() {
         setContent {
             CACTheme {
                 Scaffold(modifier = Modifier.fillMaxSize(),
-                    topBar = {},
-                    bottomBar = {}) {
+                    topBar = {
+                        TopAppBar(title = {
+                            Row(modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.Center) {
+                                Text("Tela inicial")
+                            }
+                        })
+                    },
+
+                    bottomBar = {
+                        BottomAppBar(modifier = Modifier) {
+                            Row(modifier = Modifier.fillMaxWidth()
+                                                   .padding(end = 16.dp),
+                                horizontalArrangement = Arrangement.End) {
+                                Text("v1.0.0")
+                            }
+                        }
+                    }) {
                         innerPadding -> AppNavGraph(modifier = Modifier.padding(innerPadding))
                 }
             }
