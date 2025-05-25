@@ -26,50 +26,84 @@ import androidx.compose.ui.unit.dp
 /**
  * Tela inicial do aplicativo.
  * @param modifier Modificador para a tela.
+ * @param onLoginAction Ação a ser executada ao clicar no botão de login.
+ * @param onForgotPasswordAction Ação a ser executada ao clicar no botão de esqueci minha senha.
  * @author Miguel Nischor <miguel@docente.senai.br>
  */
 @Composable
-fun HomeScreen(modifier: Modifier) {
-    Column(verticalArrangement = Arrangement.Center,
-           modifier = Modifier.fillMaxSize()) {
+fun HomeScreen(
+    modifier: Modifier,
+    onLoginAction: () -> Unit,
+    onForgotPasswordAction: () -> Unit
+) {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxSize()
+    ) {
 
-        Text(text = "Usuário:",
-             modifier = Modifier.padding(top = 16.dp,
-                                         start = 16.dp,
-                                         end = 16.dp))
+        Text(
+            text = "Usuário:",
+            modifier = Modifier.padding(
+                top = 16.dp,
+                start = 16.dp,
+                end = 16.dp
+            )
+        )
 
-        OutlinedTextField(value = "",
-                          onValueChange = {},
-                          modifier = Modifier.padding(top = 8.dp,
-                                                      start = 16.dp,
-                                                      end = 16.dp)
-                                             .fillMaxWidth())
+        OutlinedTextField(
+            value = "",
+            onValueChange = {},
+            modifier = Modifier
+                .padding(
+                    top = 8.dp,
+                    start = 16.dp,
+                    end = 16.dp
+                )
+                .fillMaxWidth()
+        )
 
-        Text(text = "Senha:",
-             modifier = Modifier.padding(top = 16.dp,
-                                         start = 16.dp,
-                                         end = 16.dp))
+        Text(
+            text = "Senha:",
+            modifier = Modifier.padding(
+                top = 16.dp,
+                start = 16.dp,
+                end = 16.dp
+            )
+        )
 
-        OutlinedTextField(value = "",
-                          onValueChange = {},
-                          modifier = Modifier.padding(top = 8.dp,
-                                                      start = 16.dp,
-                                                      end = 16.dp)
-                                             .fillMaxWidth())
+        OutlinedTextField(
+            value = "",
+            onValueChange = {},
+            modifier = Modifier
+                .padding(
+                    top = 8.dp,
+                    start = 16.dp,
+                    end = 16.dp
+                )
+                .fillMaxWidth()
+        )
 
-        Button(modifier = Modifier.padding(top = 16.dp,
-                                           start = 16.dp,
-                                           end = 16.dp)
-               .fillMaxWidth(),
-               onClick = {}) {
+        Button(
+            modifier = Modifier
+                .padding(
+                    top = 16.dp,
+                    start = 16.dp,
+                    end = 16.dp
+                )
+                .fillMaxWidth(),
+            onClick = { onLoginAction }) {
             Text(text = "Acessar")
         }
 
-        Button(modifier = Modifier.padding(top = 8.dp,
-                                           start = 16.dp,
-                                           end = 16.dp)
-               .fillMaxWidth(),
-               onClick = {}) {
+        Button(
+            modifier = Modifier
+                .padding(
+                    top = 8.dp,
+                    start = 16.dp,
+                    end = 16.dp
+                )
+                .fillMaxWidth(),
+            onClick = { onForgotPasswordAction }) {
             Text(text = "Esqueci minha senha")
         }
     }
@@ -82,5 +116,5 @@ fun HomeScreen(modifier: Modifier) {
 @Preview
 @Composable
 fun PreviewHomeScreen() {
-    HomeScreen(modifier = Modifier)
+    HomeScreen(modifier = Modifier, onLoginAction = {}, onForgotPasswordAction = {})
 }
