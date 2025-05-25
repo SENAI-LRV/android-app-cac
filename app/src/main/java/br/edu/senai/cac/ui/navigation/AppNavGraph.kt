@@ -64,13 +64,21 @@ fun AppNavGraph(
         composable(route = Screen.Home.route) {
             HomeScreen(
                 modifier = Modifier,
-                onLoginAction = {navController.navigate(route = Screen.Admin.route)},
+                onLoginAction = { navController.navigate(route = Screen.Admin.route) },
                 onForgotPasswordAction = {}
             )
         }
 
         composable(route = Screen.Admin.route) {
-            AdminScreen(modifier = Modifier)
+            AdminScreen(
+                modifier = Modifier,
+                onKeyRegistrationAction = { navController.navigate(route = Screen.KeyRegistration.route) },
+                onTeacherRegistrationAction = { navController.navigate(route = Screen.TeacherRegistration.route) },
+                onRoomRegistrationAction = { navController.navigate(route = Screen.RoomRegistration.route) },
+                onKeyDetailsAction = { navController.navigate(route = Screen.KeyDetail.route) },
+                onTeacherDetailsAction = { navController.navigate(route = Screen.TeacherDetail.route) },
+                onRoomDetailsAction = { navController.navigate(route = Screen.RoomDetail.route) }
+            )
         }
 
         composable(route = Screen.Settings.route) {
