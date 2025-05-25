@@ -8,10 +8,13 @@
 package br.edu.senai.cac.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import br.edu.senai.cac.ui.AdminScreen
 import br.edu.senai.cac.ui.HomeScreen
 import br.edu.senai.cac.ui.KeyDetailScreen
@@ -23,8 +26,29 @@ import br.edu.senai.cac.ui.TeacherDetailScreen
 import br.edu.senai.cac.ui.TeacherRegistrationScreen
 
 @Composable
-fun AppNavGraph(modifier: Modifier) {
-    var navController = rememberNavController()
+fun AppNavGraph(modifier: Modifier,
+                navController: NavHostController,
+                updateTitle: (String) -> Unit) {
+
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+
+    LaunchedEffect(navBackStackEntry) {
+        val currentRoute = navBackStackEntry?.destination?.route
+        val title = when (currentRoute) {
+            Screen.Home.route -> "Tela inicial"
+            Screen.Admin.route -> "Administração"
+            Screen.Settings.route -> "Configurações"
+            Screen.KeyRegistration.route -> "Cadastro de chaves"
+            Screen.KeyDetail.route -> "Informações da chave"
+            Screen.TeacherRegistration.route -> "Cadastro de professores"
+            Screen.TeacherDetail.route -> "Informações do professor"
+            Screen.RoomRegistration.route -> "Cadastro de salas"
+            Screen.RoomDetail.route -> "Informações da sala"
+            else -> ""
+        }
+
+        updateTitle(title)
+    }
 
     NavHost(
         navController = navController,
