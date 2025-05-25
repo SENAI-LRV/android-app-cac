@@ -1,3 +1,10 @@
+/*
+* Projeto: CAC - Cadê a Chave?
+* Arquivo: /app/src/main/java/br/edu/senai/cac/ui/theme/Type.kt
+* Descrição: Definição de tipografia do aplicativo.
+* Autor: Miguel Nischor <miguel@docente.senai.br>
+* Data: 24/05/2025
+*/
 package br.edu.senai.cac.ui.theme
 
 import androidx.compose.material3.Typography
