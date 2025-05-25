@@ -14,6 +14,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -30,6 +31,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import br.edu.senai.cac.ui.navigation.AppNavGraph
@@ -70,13 +72,23 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier,
                             containerColor = Color.LightGray
                         ) {
-                            Row(
+                            Column(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(end = 16.dp),
-                                horizontalArrangement = Arrangement.End
+                                    .padding(horizontal = 16.dp)
                             ) {
-                                Text(text = "v1.0.0", fontWeight = FontWeight.Bold)
+                                Text(
+                                    text = "Copyright © 2025 SENAI MT",
+                                    fontWeight = FontWeight.Bold,
+                                    modifier = Modifier.fillMaxWidth(),
+                                    textAlign = TextAlign.Center
+                                )
+                                Text(
+                                    text = "v1.0.0",
+                                    fontWeight = FontWeight.Bold,
+                                    modifier = Modifier.fillMaxWidth(),
+                                    textAlign = TextAlign.Center
+                                )
                             }
                         }
                     }) { innerPadding ->
