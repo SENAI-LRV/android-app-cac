@@ -23,9 +23,13 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.rememberNavController
 import br.edu.senai.cac.ui.navigation.AppNavGraph
 import br.edu.senai.cac.ui.theme.CACTheme
 
@@ -43,6 +47,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             CACTheme {
+                val navController = rememberNavController()
+                var currentScreenTitle by remember { mutableStateOf("Tela inicial") }
+
                 Scaffold(modifier = Modifier.fillMaxSize(),
                     topBar = {
                         TopAppBar(title = {
@@ -62,7 +69,9 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                     }) {
-                        innerPadding -> AppNavGraph(modifier = Modifier.padding(innerPadding))
+                        innerPadding -> AppNavGraph(navController = navController,
+                                                    modifier = Modifier.padding(innerPadding),
+                                                    updateTitle = { title -> currentScreenTitle = title })
                 }
             }
         }
