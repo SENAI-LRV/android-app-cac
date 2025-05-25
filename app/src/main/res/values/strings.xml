@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">CAC</string>
+    <string name="title_admin">Administração</string>
+    <string name="title_home">Página inicial</string>
+    <string name="title_key_details">Detalhes da chave</string>
+    <string name="title_key_registration">Cadastro de chaves</string>
+    <string name="title_room_details">Detalhes da sala</string>
+    <string name="title_room_registration">Cadastro de salas</string>
+    <string name="title_settings">Configurações</string>
+    <string name="title_teacher_details">Detalhes do professor</string>
+    <string name="title_teacher_registration">Cadastro de professores</string>
 </resources>
