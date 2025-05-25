@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -24,6 +25,7 @@ import br.edu.senai.cac.ui.RoomRegistrationScreen
 import br.edu.senai.cac.ui.SettingsScreen
 import br.edu.senai.cac.ui.TeacherDetailScreen
 import br.edu.senai.cac.ui.TeacherRegistrationScreen
+import br.edu.senai.cac.R
 
 @Composable
 fun AppNavGraph(modifier: Modifier,
@@ -31,23 +33,24 @@ fun AppNavGraph(modifier: Modifier,
                 updateTitle: (String) -> Unit) {
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
 
-    LaunchedEffect(navBackStackEntry) {
-        val currentRoute = navBackStackEntry?.destination?.route
-        val title = when (currentRoute) {
-            Screen.Home.route -> "Tela inicial"
-            Screen.Admin.route -> "Administração"
-            Screen.Settings.route -> "Configurações"
-            Screen.KeyRegistration.route -> "Cadastro de chaves"
-            Screen.KeyDetail.route -> "Informações da chave"
-            Screen.TeacherRegistration.route -> "Cadastro de professores"
-            Screen.TeacherDetail.route -> "Informações do professor"
-            Screen.RoomRegistration.route -> "Cadastro de salas"
-            Screen.RoomDetail.route -> "Informações da sala"
-            else -> ""
-        }
+    val title = when (currentRoute) {
+        Screen.Home.route -> stringResource(id = R.string.title_home)
+        Screen.Admin.route -> stringResource(id = R.string.title_admin)
+        Screen.Settings.route -> stringResource(id = R.string.title_settings)
+        Screen.KeyRegistration.route -> stringResource(id = R.string.title_key_registration)
+        Screen.KeyDetail.route -> stringResource(id = R.string.title_key_details)
+        Screen.TeacherRegistration.route -> stringResource(id = R.string.title_teacher_registration)
+        Screen.TeacherDetail.route -> stringResource(id = R.string.title_teacher_details)
+        Screen.RoomRegistration.route -> stringResource(id = R.string.title_room_registration)
+        Screen.RoomDetail.route -> stringResource(id = R.string.title_room_details)
+        else -> ""
+    }
 
-        updateTitle(title)
+    LaunchedEffect(currentRoute) {
+        if (currentRoute != null)
+            updateTitle(title)
     }
 
     NavHost(
