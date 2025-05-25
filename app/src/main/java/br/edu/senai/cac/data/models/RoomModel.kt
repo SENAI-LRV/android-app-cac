@@ -3,7 +3,7 @@
 * Arquivo: /app/src/main/java/br/edu/senai/cac/data/models/RoomModel.kt
 * Descrição: Modelo de entidade para representar uma sala no banco de dados.
 * Autor: Miguel Nischor <miguel@docente.senai.br>
-* Data: 27/05/2025
+* Data: 25/05/2025
 */
 package br.edu.senai.cac.data.models
 
