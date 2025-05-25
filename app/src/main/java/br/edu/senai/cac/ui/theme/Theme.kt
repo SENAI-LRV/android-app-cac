@@ -1,3 +1,10 @@
+/*
+* Projeto: CAC - Cadê a Chave?
+* Arquivo: /app/src/main/java/br/edu/senai/cac/ui/theme/Theme.kt
+* Descrição: Definição do tema do aplicativo.
+* Autor: Miguel Nischor <miguel@docente.senai.br>
+* Data: 24/05/2025
+*/
 package br.edu.senai.cac.ui.theme
 
 import android.os.Build
@@ -11,12 +18,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
+/* Esquema de cores em modo escuro */
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
     secondary = PurpleGrey80,
     tertiary = Pink80
 )
 
+/* Esquema de cores em modo claro */
 private val LightColorScheme = lightColorScheme(
     primary = Purple40,
     secondary = PurpleGrey40,
@@ -30,6 +39,13 @@ private val LightColorScheme = lightColorScheme(
     onSurface = Color(0xFF1C1B1F),
 )
 
+/**
+ * Definição do tema da aplicação.
+ * @param darkTheme Indica se o tema deve ser escuro ou claro.
+ * @param dynamicColor Indica se o tema deve usar cores dinâmicas.
+ * @param content Conteúdo a ser exibido dentro do tema.
+ * @author Miguel Nischor <miguel@docente.senai.br>
+ */
 @Composable
 fun CACTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
