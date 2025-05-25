@@ -55,7 +55,7 @@ class MainActivity : ComponentActivity() {
                         TopAppBar(title = {
                             Row(modifier = Modifier.fillMaxWidth(),
                                 horizontalArrangement = Arrangement.Center) {
-                                Text("Tela inicial")
+                                Text(currentScreenTitle)
                             }
                         })
                     },
