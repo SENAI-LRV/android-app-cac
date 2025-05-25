@@ -20,6 +20,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
@@ -47,7 +48,8 @@ fun HomeScreen(
                 top = 16.dp,
                 start = 16.dp,
                 end = 16.dp
-            )
+            ),
+            fontWeight = FontWeight.Bold
         )
 
         OutlinedTextField(
@@ -68,7 +70,8 @@ fun HomeScreen(
                 top = 16.dp,
                 start = 16.dp,
                 end = 16.dp
-            )
+            ),
+            fontWeight = FontWeight.Bold
         )
 
         OutlinedTextField(
