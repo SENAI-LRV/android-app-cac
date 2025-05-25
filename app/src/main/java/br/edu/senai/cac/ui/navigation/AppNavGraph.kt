@@ -28,9 +28,11 @@ import br.edu.senai.cac.ui.TeacherRegistrationScreen
 import br.edu.senai.cac.R
 
 @Composable
-fun AppNavGraph(modifier: Modifier,
-                navController: NavHostController,
-                updateTitle: (String) -> Unit) {
+fun AppNavGraph(
+    modifier: Modifier,
+    navController: NavHostController,
+    updateTitle: (String) -> Unit
+) {
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
@@ -56,10 +58,15 @@ fun AppNavGraph(modifier: Modifier,
     NavHost(
         navController = navController,
         startDestination = Screen.Home.route,
-        route = "root_graph"
+        route = "root_graph",
+        modifier = modifier
     ) {
         composable(route = Screen.Home.route) {
-            HomeScreen(modifier = Modifier)
+            HomeScreen(
+                modifier = Modifier,
+                onLoginAction = {navController.navigate(route = Screen.Admin.route)},
+                onForgotPasswordAction = {}
+            )
         }
 
         composable(route = Screen.Admin.route) {
