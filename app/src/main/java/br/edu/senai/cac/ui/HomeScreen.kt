@@ -91,7 +91,7 @@ fun HomeScreen(
                     end = 16.dp
                 )
                 .fillMaxWidth(),
-            onClick = { onLoginAction }) {
+            onClick = { onLoginAction() }) {
             Text(text = "Acessar")
         }
 
@@ -103,7 +103,7 @@ fun HomeScreen(
                     end = 16.dp
                 )
                 .fillMaxWidth(),
-            onClick = { onForgotPasswordAction }) {
+            onClick = { onForgotPasswordAction() }) {
             Text(text = "Esqueci minha senha")
         }
     }
