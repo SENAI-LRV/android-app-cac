@@ -28,6 +28,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import br.edu.senai.cac.ui.navigation.AppNavGraph
@@ -50,28 +52,38 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 var currentScreenTitle by remember { mutableStateOf("Tela inicial") }
 
-                Scaffold(modifier = Modifier.fillMaxSize(),
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
                     topBar = {
                         TopAppBar(title = {
-                            Row(modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.Center) {
-                                Text(currentScreenTitle)
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.Center
+                            ) {
+                                Text(text = currentScreenTitle, fontWeight = FontWeight.Bold)
                             }
                         })
                     },
 
                     bottomBar = {
-                        BottomAppBar(modifier = Modifier) {
-                            Row(modifier = Modifier.fillMaxWidth()
-                                                   .padding(end = 16.dp),
-                                horizontalArrangement = Arrangement.End) {
-                                Text("v1.0.0")
+                        BottomAppBar(
+                            modifier = Modifier,
+                            containerColor = Color.LightGray
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(end = 16.dp),
+                                horizontalArrangement = Arrangement.End
+                            ) {
+                                Text(text = "v1.0.0", fontWeight = FontWeight.Bold)
                             }
                         }
-                    }) {
-                        innerPadding -> AppNavGraph(navController = navController,
-                                                    modifier = Modifier.padding(innerPadding),
-                                                    updateTitle = { title -> currentScreenTitle = title })
+                    }) { innerPadding ->
+                    AppNavGraph(
+                        navController = navController,
+                        modifier = Modifier.padding(innerPadding),
+                        updateTitle = { title -> currentScreenTitle = title })
                 }
             }
         }
