@@ -30,7 +30,7 @@ interface RoomDao {
     @Query("SELECT * FROM rooms WHERE id = :id")
     suspend fun getById(id: String): RoomModel?
 
-    @Query("SELECT * FROM rooms ORDER BY room_name ASC")
+    @Query("SELECT * FROM rooms ORDER BY room_description ASC")
     fun getAll(): Flow<List<RoomModel>>
 
     @Query("DELETE FROM rooms")
