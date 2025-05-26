@@ -86,7 +86,13 @@ fun AppNavGraph(
         }
 
         composable(route = Screen.KeyRegistration.route) {
-            KeyRegistrationScreen(modifier = Modifier)
+            KeyRegistrationScreen(modifier = Modifier,
+                onNavigateBack = { navController.navigateUp() },
+                onSaveKey = { key ->
+                    println("Chave para salvar: $key")
+                    navController.navigateUp()
+                }
+            )
         }
 
         composable(route = Screen.KeyDetail.route) {
