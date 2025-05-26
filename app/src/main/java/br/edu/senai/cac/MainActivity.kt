@@ -34,6 +34,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
+import br.edu.senai.cac.data.database.AppDatabase
 import br.edu.senai.cac.ui.navigation.AppNavGraph
 import br.edu.senai.cac.ui.theme.CACTheme
 
@@ -53,6 +54,9 @@ class MainActivity : ComponentActivity() {
             CACTheme {
                 val navController = rememberNavController()
                 var currentScreenTitle by remember { mutableStateOf("Tela inicial") }
+
+                // Criação ou acesso do banco de dados
+                val database = AppDatabase.getDatabase(this)
 
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
