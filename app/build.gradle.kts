@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.kapt)
 }
 
 android {
@@ -65,7 +66,8 @@ dependencies {
     androidTestImplementation(platform(libs.androidx.compose.bom))
 
     /* Processador de anotações */
-    annotationProcessor(libs.hilt.compiler)
+    kapt(libs.hilt.compiler)
+    kapt(libs.androidx.room.compiler)
 
     /* Implementações para compilação de depuração */
     debugImplementation(libs.androidx.ui.test.manifest)
@@ -88,3 +90,4 @@ dependencies {
     /* Implementações para compilação de teste */
     testImplementation(libs.junit)
 }
+
