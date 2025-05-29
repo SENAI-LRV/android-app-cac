@@ -2,7 +2,6 @@ package br.edu.senai.cac.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.edu.senai.cac.data.dao.KeyDao
 import br.edu.senai.cac.data.models.KeyModel
 import br.edu.senai.cac.data.repository.KeyRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -44,6 +43,16 @@ class KeyDetailViewModel @Inject constructor(
         viewModelScope.launch {
             val updatedKey = key.copy(isAvailable = false, location = "Reservada")
             repository.update(updatedKey)
+        }
+    }
+
+    /**
+     * Deleta uma chave do banco de dados.
+     * @param key O KeyModel da chave a ser deletada.
+     */
+    fun deleteKey(key: KeyModel) {
+        viewModelScope.launch {
+            repository.delete(key)
         }
     }
 
