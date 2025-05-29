@@ -16,6 +16,11 @@ import androidx.room.Update
 import br.edu.senai.cac.data.models.TeacherModel
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * Interface DAO (Data Access Object) para a entidade TeacherModel.
+ * Define as operações de acesso aos dados relacionadas aos professores.
+ * @author Miguel Nischor <miguel@docente.senai.br>
+ */
 @Dao
 interface TeacherDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
