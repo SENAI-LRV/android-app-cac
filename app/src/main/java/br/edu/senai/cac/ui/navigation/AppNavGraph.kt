@@ -16,6 +16,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import br.edu.senai.cac.R
 import br.edu.senai.cac.ui.AdminScreen
 import br.edu.senai.cac.ui.HomeScreen
 import br.edu.senai.cac.ui.KeyDetailScreen
@@ -25,13 +26,14 @@ import br.edu.senai.cac.ui.RoomRegistrationScreen
 import br.edu.senai.cac.ui.SettingsScreen
 import br.edu.senai.cac.ui.TeacherDetailScreen
 import br.edu.senai.cac.ui.TeacherRegistrationScreen
-import br.edu.senai.cac.R
+import br.edu.senai.cac.ui.viewmodel.KeyDetailViewModel
 
 @Composable
 fun AppNavGraph(
     modifier: Modifier,
     navController: NavHostController,
-    updateTitle: (String) -> Unit
+    updateTitle: (String) -> Unit,
+    keyDetailViewModel: KeyDetailViewModel
 ) {
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -89,14 +91,17 @@ fun AppNavGraph(
             KeyRegistrationScreen(modifier = Modifier,
                 onNavigateBack = { navController.navigateUp() },
                 onSaveKey = { key ->
-                    println("Chave para salvar: $key")
+                    keyDetailViewModel.addKey(key)
                     navController.navigateUp()
                 }
             )
         }
 
         composable(route = Screen.KeyDetail.route) {
-            KeyDetailScreen(modifier = Modifier)
+            KeyDetailScreen(
+                modifier = Modifier,
+                updateTitle = updateTitle
+            )
         }
 
         composable(route = Screen.TeacherRegistration.route) {
