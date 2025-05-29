@@ -10,8 +10,11 @@ package br.edu.senai.cac.data.repository
 import br.edu.senai.cac.data.dao.RoomDao
 import br.edu.senai.cac.data.models.RoomModel
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class RoomRepository(private val roomDao: RoomDao) {
+class RoomRepository @Inject constructor(
+    private val roomDao: RoomDao
+) {
 
     suspend fun insert(room: RoomModel) {
         roomDao.insert(room)
