@@ -14,6 +14,8 @@ import br.edu.senai.cac.data.dao.RoomDao
 import br.edu.senai.cac.data.dao.TeacherDao
 import br.edu.senai.cac.data.database.AppDatabase
 import br.edu.senai.cac.data.repository.KeyRepository
+import br.edu.senai.cac.data.repository.RoomRepository
+import br.edu.senai.cac.data.repository.TeacherRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -48,6 +50,14 @@ object DatabaseModule {
         db.roomDao()
 
     @Provides
+    fun provideRoomRepository(roomDao: RoomDao): RoomRepository =
+        RoomRepository(roomDao)
+
+    @Provides
     fun provideTeacherDao(db: AppDatabase): TeacherDao =
         db.teacherDao()
+
+    @Provides
+    fun provideTeacherRepository(teacherDao: TeacherDao): TeacherRepository =
+        TeacherRepository(teacherDao)
 }
