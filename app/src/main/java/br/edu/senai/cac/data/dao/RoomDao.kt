@@ -16,6 +16,11 @@ import androidx.room.Update
 import br.edu.senai.cac.data.models.RoomModel
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * Interface DAO (Data Access Object) para a entidade RoomModel.
+ * Define operações de acesso a dados para a tabela "rooms" no banco de dados.
+ * @author Miguel Nischor <miguel@docente.senai.br>
+ */
 @Dao
 interface RoomDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
