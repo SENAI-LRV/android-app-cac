@@ -11,6 +11,12 @@ import br.edu.senai.cac.data.dao.TeacherDao
 import br.edu.senai.cac.data.models.TeacherModel
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * Repositório para a entidade TeacherModel.
+ * Fornece métodos para inserir, atualizar, deletar e consultar professores.
+ * @property teacherDao A instância do DAO para acesso ao banco de dados.
+ * @author Miguel Nischor <miguel@docente.senai.br>
+ */
 class TeacherRepository(private val teacherDao: TeacherDao) {
 
     suspend fun insert(teacher: TeacherModel) {
