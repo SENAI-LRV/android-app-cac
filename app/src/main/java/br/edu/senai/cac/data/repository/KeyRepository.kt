@@ -11,6 +11,12 @@ import br.edu.senai.cac.data.dao.KeyDao
 import br.edu.senai.cac.data.models.KeyModel
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * Repositório para a entidade KeyModel.
+ * Este repositório fornece métodos para inserir, atualizar, deletar e recuperar chaves do banco de dados.
+ * @property keyDao A instância do DAO para operações com KeyModel.
+ * @author Miguel Nischor <miguel@docente.senai.br>
+ */
 class KeyRepository(private val keyDao: KeyDao) {
 
     suspend fun insert(key: KeyModel) {
