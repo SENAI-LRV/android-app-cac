@@ -33,10 +33,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
-import br.edu.senai.cac.data.database.AppDatabase
 import br.edu.senai.cac.ui.navigation.AppNavGraph
 import br.edu.senai.cac.ui.theme.CACTheme
+import br.edu.senai.cac.ui.viewmodel.KeyDetailViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Atividade principal do aplicativo.
@@ -46,6 +48,7 @@ import br.edu.senai.cac.ui.theme.CACTheme
  * @see [CACTheme]
  * @author Miguel Nischor <miguel@docente.senai.br>
  */
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,13 +57,10 @@ class MainActivity : ComponentActivity() {
             CACTheme {
                 val navController = rememberNavController()
                 var currentScreenTitle by remember { mutableStateOf("Tela inicial") }
-
-                // Criação ou acesso do banco de dados
-                val database = AppDatabase.getDatabase(this)
+                val keyDetailViewModel: KeyDetailViewModel = hiltViewModel()
 
                 Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    topBar = {
+                    modifier = Modifier.fillMaxSize(), topBar = {
                         TopAppBar(title = {
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
@@ -73,8 +73,7 @@ class MainActivity : ComponentActivity() {
 
                     bottomBar = {
                         BottomAppBar(
-                            modifier = Modifier,
-                            containerColor = Color.LightGray
+                            modifier = Modifier, containerColor = Color.LightGray
                         ) {
                             Column(
                                 modifier = Modifier
@@ -99,7 +98,9 @@ class MainActivity : ComponentActivity() {
                     AppNavGraph(
                         navController = navController,
                         modifier = Modifier.padding(innerPadding),
-                        updateTitle = { title -> currentScreenTitle = title })
+                        updateTitle = { title -> currentScreenTitle = title },
+                        keyDetailViewModel = keyDetailViewModel
+                    )
                 }
             }
         }
