@@ -18,6 +18,12 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
     }
+
+    versionCatalogs {
+        create("libs") {
+            files("gradle/libs.versions.toml")
+        }
+    }
 }
 
 rootProject.name = "CAC"
