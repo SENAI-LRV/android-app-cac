@@ -16,7 +16,11 @@ import br.edu.senai.cac.data.models.KeyModel
 import br.edu.senai.cac.data.models.RoomModel
 import br.edu.senai.cac.data.models.TeacherModel
 
-@Database(entities = [KeyModel::class, RoomModel::class, TeacherModel::class], version = 1, exportSchema = false)
+@Database(
+    entities = [KeyModel::class, RoomModel::class, TeacherModel::class],
+    version = 1,
+    exportSchema = false
+)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun keyDao(): KeyDao
     abstract fun roomDao(): RoomDao
