@@ -16,6 +16,11 @@ import androidx.room.Update
 import br.edu.senai.cac.data.models.KeyModel
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * Interface DAO (Data Access Object) para a entidade KeyModel.
+ * Fornece métodos para inserir, atualizar, deletar e consultar chaves no banco de dados.
+ * @author Miguel Nischor <miguel@docente.senai.br>
+ */
 @Dao
 interface KeyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
