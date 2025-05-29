@@ -9,6 +9,8 @@
 
 package br.edu.senai.cac.ui
 
+import android.util.Log
+import java.util.UUID
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -48,7 +50,6 @@ fun KeyRegistrationScreen(
     onNavigateBack: () -> Unit,
     onSaveKey: (KeyModel) -> Unit
 ) {
-    var keyId by remember { mutableStateOf("") }
     var keyName by remember { mutableStateOf("") }
     var keyRoomNumber by remember { mutableStateOf("") }
     var keyIsAvailable by remember { mutableStateOf(true) }
@@ -61,18 +62,19 @@ fun KeyRegistrationScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        OutlinedTextField(
-            value = keyId,
-            onValueChange = { keyId = it },
-            label = { Text("Identificador da Chave (Ex: TAG001)") },
-            modifier = Modifier.fillMaxWidth(),
-            singleLine = true
-        )
 
         OutlinedTextField(
             value = keyName,
             onValueChange = { keyName = it },
             label = { Text("Nome da Chave (Ex: Sala 101, Lab Info)") },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true
+        )
+
+        OutlinedTextField(
+            value = keyRoomNumber,
+            onValueChange = { keyRoomNumber = it },
+            label = { Text("Número da Sala (Ex: S101, LAB02)") },
             modifier = Modifier.fillMaxWidth(),
             singleLine = true
         )
@@ -103,16 +105,17 @@ fun KeyRegistrationScreen(
         Button(
             onClick = {
                 val newKey = KeyModel(
-                    id = keyId,
+                    id = UUID.randomUUID().toString(),
                     name = keyName,
                     roomNumber = keyRoomNumber,
                     isAvailable = keyIsAvailable,
                     location = keyCurrentLocation
                 )
                 onSaveKey(newKey)
+                Log.d("KeyRegistrationScreen", "Chave salva: $newKey")
             },
             modifier = Modifier.fillMaxWidth(),
-            enabled = keyId.isNotBlank() && keyName.isNotBlank() && keyCurrentLocation.isNotBlank()
+            enabled = keyName.isNotBlank() && keyRoomNumber.isNotBlank() && keyCurrentLocation.isNotBlank()
         ) {
             Text("Salvar Chave")
         }
