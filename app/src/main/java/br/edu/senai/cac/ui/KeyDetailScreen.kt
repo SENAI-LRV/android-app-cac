@@ -57,6 +57,7 @@ fun KeyDetailScreen(
     keyDetailViewModel: KeyDetailViewModel = hiltViewModel()
 ) {
     var showDialog by remember { mutableStateOf(false) }
+    var keyToReserve by remember { mutableStateOf<KeyModel?>(null) }
 
     LaunchedEffect(Unit) {
         updateTitle("Chaves Disponíveis")
@@ -80,16 +81,28 @@ fun KeyDetailScreen(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 items(keys) { key ->
-                    KeyItem(key = key, onReserveClick = {
-                        keyDetailViewModel.reserveKey(key)
-                        showDialog = true
-                    })
+                    KeyItem(
+                        key = key,
+                        onReserveClick = {
+                            keyToReserve = key
+                            showDialog = true
+                        },
+                        onDeleteClick = {
+                            keyDetailViewModel.deleteKey(key)
+                        }
+                    )
                 }
             }
         }
 
         if (showDialog) {
-            Dialog(onDismissRequest = { showDialog = false }) {
+            Dialog(onDismissRequest = {
+                keyToReserve?.let { key ->
+                    keyDetailViewModel.reserveKey(key)
+                }
+                showDialog = false
+                keyToReserve = null
+            }) {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -101,7 +114,13 @@ fun KeyDetailScreen(
                         style = MaterialTheme.typography.bodyLarge
                     )
                     Spacer(modifier = Modifier.height(8.dp))
-                    Button(onClick = { showDialog = false }) {
+                    Button(onClick = {
+                        keyToReserve?.let { key ->
+                            keyDetailViewModel.reserveKey(key)
+                        }
+                        showDialog = false
+                        keyToReserve = null
+                    }) {
                         Text("OK")
                     }
                 }
@@ -114,27 +133,36 @@ fun KeyDetailScreen(
  * Composable para exibir um item de chave na lista.
  * @param key O modelo da chave (RoomModel) a ser exibido.
  * @param onReserveClick Callback para quando o botão "Reservar" é clicado.
+ * @param onDeleteClick Callback para quando o botão "Excluir" é clicado.
  * @author Miguel Nischor <miguel@docente.senai.br>
  */
 @Composable
-fun KeyItem(key: KeyModel, onReserveClick: () -> Unit) {
+fun KeyItem(key: KeyModel, onReserveClick: () -> Unit, onDeleteClick: () -> Unit) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Column(modifier = Modifier.weight(1f)) {
-                Text(text = key.name, style = MaterialTheme.typography.titleMedium)
-            }
-            Spacer(modifier = Modifier.width(8.dp))
-            Button(onClick = onReserveClick) {
-                Text("Reservar")
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(text = "Chave: ${key.name}", style = MaterialTheme.typography.titleMedium)
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(text = "Sala: ${key.roomNumber}", style = MaterialTheme.typography.bodyMedium)
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "Professor: ${key.isAvailable}",
+                style = MaterialTheme.typography.bodyMedium
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ) {
+                Button(onClick = onReserveClick) {
+                    Text("Reservar")
+                }
+                Spacer(modifier = Modifier.width(8.dp))
+                Button(onClick = onDeleteClick) {
+                    Text("Excluir")
+                }
             }
         }
     }
