@@ -1,3 +1,10 @@
+/*
+* Projeto: CAC - Cadê a Chave?
+* Arquivo: /app/src/main/java/br/edu/senai/cac/ui/viewmodel/KeyDetailViewModel.kt
+* Descrição: ViewModel para gerir a lógica de negócios da tela de detalhes das chaves.
+* Autor: Miguel Nischor <miguel@docente.senai.br>
+* Data: 30/05/2025
+*/
 package br.edu.senai.cac.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
@@ -13,7 +20,7 @@ import javax.inject.Inject
 
 /**
  * ViewModel para gerir a lógica de negócios da tela de detalhes das chaves.
- * @param dao Acesso ao DAO para operações de banco de dados.
+ * @param repository Acesso ao repositório para operações de banco de dados.
  * @author Miguel Nischor <miguel@docente.senai.br>
  */
 @HiltViewModel
