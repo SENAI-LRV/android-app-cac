@@ -9,6 +9,7 @@ package br.edu.senai.cac.data.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import java.util.UUID
 
@@ -16,15 +17,31 @@ import java.util.UUID
  * Modelo de entidade para representar uma chave no banco de dados.
  *
  * @property id O identificador único da chave (gerado automaticamente).
+ * @property roomId O identificador da sala à qual esta chave pertence (chave estrangeira).
  * @property name O nome ou identificação da chave (ex: "Chave Lab Informática 01").
  * @property roomNumber O número da sala à qual esta chave pertence.
  * @property isAvailable Indica se a chave está disponível para empréstimo.
+ * @property isDisabled Indica se a chave está desativada (não pode ser emprestada).
  * @property location A localização atual da chave (ex: "Secretaria", "Com Professor X").
+ * @property createdAt Timestamp de criação da chave (gerado automaticamente).
+ * @property updatedAt Timestamp da última atualização da chave (gerado automaticamente).
  */
-@Entity(tableName = "keys")
+@Entity(
+    tableName = "keys",
+    foreignKeys = [
+        ForeignKey(
+            entity = RoomModel::class,
+            parentColumns = ["id"],
+            childColumns = ["room_number"],
+            onDelete = ForeignKey.CASCADE
+        )
+    ]
+)
 data class KeyModel(
     @PrimaryKey
     val id: String = UUID.randomUUID().toString(),
+
+    public val roomId: String,
 
     @ColumnInfo(name = "key_name")
     val name: String,
@@ -35,6 +52,15 @@ data class KeyModel(
     @ColumnInfo(name = "is_available")
     var isAvailable: Boolean = true,
 
+    @ColumnInfo(name = "is_disabled")
+    var isDisabled: Boolean = false,
+
     @ColumnInfo(name = "current_location")
-    var location: String = "Sala Técnica"
+    var location: String = "Sala Técnica",
+
+    @ColumnInfo(name = "created_at")
+    val createdAt: Long = System.currentTimeMillis(),
+
+    @ColumnInfo(name = "updated_at")
+    val updatedAt: Long = System.currentTimeMillis()
 )
