@@ -42,13 +42,15 @@ import br.edu.senai.cac.ui.viewmodel.RoomDetailViewModel
  * Tela de detalhes de uma sala.
  * @param modifier Modificador para a tela.
  * @param updateTitle Função para atualizar o título da tela na TopAppBar.
+ * @param onNavigateBack Função para ser chamada quando o botão "Voltar" é pressionado.
  * @param roomDetailViewModel ViewModel para gerir os dados das salas.
- * @author Miguel Nischor <miguel@docente.senai.br>
+ * @author Miguel Nischor <miguel@docente.senai>
  */
 @Composable
 fun RoomDetailScreen(
     modifier: Modifier = Modifier,
     updateTitle: (String) -> Unit,
+    onNavigateBack: () -> Unit,
     roomDetailViewModel: RoomDetailViewModel = hiltViewModel()
 ) {
     LaunchedEffect(Unit) {
@@ -70,7 +72,8 @@ fun RoomDetailScreen(
             )
         } else {
             LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.weight(1f)
             ) {
                 items(rooms) { room ->
                     RoomItem(
@@ -82,6 +85,13 @@ fun RoomDetailScreen(
                 }
             }
         }
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(
+            onClick = onNavigateBack,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Voltar")
+        }
     }
 }
 
@@ -89,7 +99,6 @@ fun RoomDetailScreen(
  * Composable para exibir um item de sala na lista.
  * @param room O modelo da sala (RoomModel) a ser exibido.
  * @param onDeleteClick Callback para quando o botão "Excluir" é clicado.
- * @author Miguel Nischor <miguel@docente.senai.br>
  */
 @Composable
 fun RoomItem(room: RoomModel, onDeleteClick: () -> Unit) {
@@ -124,16 +133,14 @@ fun RoomItem(room: RoomModel, onDeleteClick: () -> Unit) {
 
 /**
  * Preview da tela de detalhes de uma sala.
- * @author Miguel Nischor <miguel@docente.senai.br>
  */
 @Preview(showBackground = true)
 @Composable
 fun PreviewRoomDetailScreen() {
     CACTheme {
         RoomDetailScreen(
-            updateTitle = {}
-            // Não é possível instanciar ViewModel diretamente no Preview com Hilt sem setup adicional.
-            // Para previews funcionais com ViewModel, considere usar um ViewModel mock.
+            updateTitle = {},
+            onNavigateBack = {}
         )
     }
 }
