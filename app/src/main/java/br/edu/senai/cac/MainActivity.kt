@@ -39,6 +39,7 @@ import androidx.navigation.compose.rememberNavController
 import br.edu.senai.cac.ui.navigation.AppNavGraph
 import br.edu.senai.cac.ui.theme.CACTheme
 import br.edu.senai.cac.ui.viewmodel.KeyDetailViewModel
+import br.edu.senai.cac.ui.viewmodel.RoomDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -58,7 +59,9 @@ class MainActivity : ComponentActivity() {
             CACTheme {
                 val navController = rememberNavController()
                 var currentScreenTitle by remember { mutableStateOf("Tela inicial") }
+
                 val keyDetailViewModel: KeyDetailViewModel = hiltViewModel()
+                val roomDetailViewModel: RoomDetailViewModel = hiltViewModel()
 
                 Scaffold(
                     modifier = Modifier.fillMaxSize(), topBar = {
@@ -108,7 +111,8 @@ class MainActivity : ComponentActivity() {
                         navController = navController,
                         modifier = Modifier.padding(innerPadding),
                         updateTitle = { title -> currentScreenTitle = title },
-                        keyDetailViewModel = keyDetailViewModel
+                        keyDetailViewModel = keyDetailViewModel,
+                        roomDetailViewModel = roomDetailViewModel
                     )
                 }
             }
