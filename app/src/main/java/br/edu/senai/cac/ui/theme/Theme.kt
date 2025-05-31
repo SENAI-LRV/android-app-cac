@@ -15,28 +15,34 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
 /* Esquema de cores em modo escuro */
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = ProDarkPrimary,
+    secondary = ProDarkSecondary,
+    tertiary = ProDarkTertiary,
+    background = ProDarkBackground,
+    surface = ProDarkSurface,
+    onPrimary = ProDarkOnPrimary,
+    onSecondary = ProDarkOnSecondary,
+    onTertiary = ProDarkOnTertiary,
+    onBackground = ProDarkOnBackground,
+    onSurface = ProDarkOnSurface
 )
 
 /* Esquema de cores em modo claro */
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40,
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
+    primary = ProLightPrimary,
+    secondary = ProLightSecondary,
+    tertiary = ProLightTertiary,
+    background = ProLightBackground,
+    surface = ProLightSurface,
+    onPrimary = ProLightOnPrimary,
+    onSecondary = ProLightOnSecondary,
+    onTertiary = ProLightOnTertiary,
+    onBackground = ProLightOnBackground,
+    onSurface = ProLightOnSurface,
 )
 
 /**
@@ -49,7 +55,7 @@ private val LightColorScheme = lightColorScheme(
 @Composable
 fun CACTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
