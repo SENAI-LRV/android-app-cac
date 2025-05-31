@@ -10,7 +10,6 @@
 package br.edu.senai.cac.ui
 
 import android.util.Log
-import java.util.UUID
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -34,7 +33,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import br.edu.senai.cac.data.models.KeyModel // Certifique-se de que este é o caminho correto para KeyModel
+import br.edu.senai.cac.BuildConfig
+import br.edu.senai.cac.data.models.KeyModel
 
 /**
  * Tela de registro de chaves.
@@ -60,8 +60,13 @@ fun KeyRegistrationScreen(
             .fillMaxSize()
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp) // Aumentado para 16.dp
     ) {
+        Text(
+            text = "Cadastrar Nova Chave",
+            style = MaterialTheme.typography.headlineMedium,
+            modifier = Modifier.padding(bottom = 8.dp) // Espaçamento adicional abaixo do título
+        )
 
         OutlinedTextField(
             value = keyName,
@@ -81,7 +86,8 @@ fun KeyRegistrationScreen(
 
         Row(
             modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp) // Adiciona espaçamento entre Checkbox e Text
         ) {
             Checkbox(
                 checked = keyIsAvailable,
@@ -100,19 +106,19 @@ fun KeyRegistrationScreen(
             singleLine = true
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
-
         Button(
             onClick = {
                 val newKey = KeyModel(
-                    id = UUID.randomUUID().toString(),
                     name = keyName,
                     roomNumber = keyRoomNumber,
                     isAvailable = keyIsAvailable,
                     location = keyCurrentLocation
                 )
                 onSaveKey(newKey)
-                Log.d("KeyRegistrationScreen", "Chave salva: $newKey")
+
+                if (BuildConfig.BUILD_TYPE.equals("Debug", ignoreCase = true)) {
+                    Log.d("KeyRegistrationScreen", "Chave salva: $newKey")
+                }
             },
             modifier = Modifier.fillMaxWidth(),
             enabled = keyName.isNotBlank() && keyRoomNumber.isNotBlank() && keyCurrentLocation.isNotBlank()
