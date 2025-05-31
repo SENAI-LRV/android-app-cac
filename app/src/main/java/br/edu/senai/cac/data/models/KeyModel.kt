@@ -17,7 +17,6 @@ import java.util.UUID
  * Modelo de entidade para representar uma chave no banco de dados.
  *
  * @property id O identificador único da chave (gerado automaticamente).
- * @property roomId O identificador da sala à qual esta chave pertence (chave estrangeira).
  * @property name O nome ou identificação da chave (ex: "Chave Lab Informática 01").
  * @property roomNumber O número da sala à qual esta chave pertence.
  * @property isAvailable Indica se a chave está disponível para empréstimo.
@@ -40,8 +39,6 @@ import java.util.UUID
 data class KeyModel(
     @PrimaryKey
     val id: String = UUID.randomUUID().toString(),
-
-    public val roomId: String,
 
     @ColumnInfo(name = "key_name")
     val name: String,
