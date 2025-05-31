@@ -17,6 +17,9 @@ android {
     namespace = "br.edu.senai.cac"
     compileSdk = 36
 
+    /* Habilita a geração da classe dinâmica BuildConfig */
+    buildFeatures.buildConfig = true
+
     defaultConfig {
         applicationId = "br.edu.senai.cac"
         minSdk = 24
@@ -30,6 +33,9 @@ android {
     buildTypes {
         /* Otimização para compilações de lançamento */
         release {
+            buildConfigField("String", "BUILD_TYPE", "\"Release\"")
+            resValue("string", "BUILD_TYPE", "Release")
+
             isMinifyEnabled = true
 
             proguardFiles(
@@ -40,6 +46,9 @@ android {
 
         /* Adição de sufixo nas compilações de depuração */
         debug {
+            buildConfigField("String", "BUILD_TYPE", "\"Debug\"")
+            resValue("string", "BUILD_TYPE", "Debug")
+
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
         }
