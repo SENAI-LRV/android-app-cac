@@ -42,13 +42,15 @@ import br.edu.senai.cac.ui.viewmodel.TeacherDetailViewModel
  * Tela de detalhes do professor.
  * @param modifier Modificador para a tela.
  * @param updateTitle Função para atualizar o título da tela na TopAppBar.
+ * @param onNavigateBack Função para ser chamada quando o botão "Voltar" é pressionado.
  * @param teacherDetailViewModel ViewModel para gerir os dados dos professores.
- * @author Miguel Nischor <miguel@docente.senai.br>
+ * @autor Miguel Nischor <miguel@docente.senai.br>
  */
 @Composable
 fun TeacherDetailScreen(
     modifier: Modifier = Modifier,
     updateTitle: (String) -> Unit,
+    onNavigateBack: () -> Unit,
     teacherDetailViewModel: TeacherDetailViewModel = hiltViewModel()
 ) {
     LaunchedEffect(Unit) {
@@ -70,7 +72,8 @@ fun TeacherDetailScreen(
             )
         } else {
             LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.weight(1f)
             ) {
                 items(teachers) { teacher ->
                     TeacherItem(
@@ -82,6 +85,13 @@ fun TeacherDetailScreen(
                 }
             }
         }
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(
+            onClick = onNavigateBack,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Voltar")
+        }
     }
 }
 
@@ -89,7 +99,7 @@ fun TeacherDetailScreen(
  * Composable para exibir um item de professor na lista.
  * @param teacher O modelo do professor (TeacherModel) a ser exibido.
  * @param onDeleteClick Callback para quando o botão "Excluir" é clicado.
- * @author Miguel Nischor <miguel@docente.senai.br>
+ * @autor Miguel Nischor <miguel@docente.senai.br>
  */
 @Composable
 fun TeacherItem(teacher: TeacherModel, onDeleteClick: () -> Unit) {
@@ -118,16 +128,15 @@ fun TeacherItem(teacher: TeacherModel, onDeleteClick: () -> Unit) {
 
 /**
  * Preview da tela de detalhes do professor.
- * @author Miguel Nischor <miguel@docente.senai.br>
+ * @autor Miguel Nischor <miguel@docente.senai.br>
  */
 @Preview(showBackground = true)
 @Composable
 fun PreviewTeacherDetailScreen() {
     CACTheme {
         TeacherDetailScreen(
-            updateTitle = {}
-            // Não é possível instanciar ViewModel diretamente no Preview com Hilt sem setup adicional.
-            // Para previews funcionais com ViewModel, considere usar um ViewModel mock.
+            updateTitle = {},
+            onNavigateBack = {}
         )
     }
 }
