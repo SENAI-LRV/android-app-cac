@@ -105,7 +105,11 @@ fun AppNavGraph(
         composable(route = Screen.KeyDetail.route) {
             KeyDetailScreen(
                 modifier = Modifier,
-                updateTitle = updateTitle
+                updateTitle = updateTitle,
+                onNavigateBack = {
+                    navController.navigateUp()
+                },
+                keyDetailViewModel = keyDetailViewModel
             )
         }
 
@@ -124,6 +128,9 @@ fun AppNavGraph(
             TeacherDetailScreen(
                 modifier = Modifier,
                 updateTitle = updateTitle,
+                onNavigateBack = {
+                    navController.navigateUp()
+                },
                 teacherDetailViewModel = teacherDetailViewModel,
             )
         }
@@ -143,6 +150,9 @@ fun AppNavGraph(
             RoomDetailScreen(
                 modifier = Modifier,
                 updateTitle = updateTitle,
+                onNavigateBack = {
+                    navController.navigateUp()
+                },
                 roomDetailViewModel = roomDetailViewModel
             )
         }
