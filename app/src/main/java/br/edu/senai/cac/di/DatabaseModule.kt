@@ -35,7 +35,9 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): AppDatabase =
-        Room.databaseBuilder(context, AppDatabase::class.java, "cac-db").build()
+        Room.databaseBuilder(context, AppDatabase::class.java, "cac-db")
+            .fallbackToDestructiveMigration(true)
+            .build()
 
     @Provides
     fun provideKeyDao(db: AppDatabase): KeyDao =
