@@ -40,6 +40,7 @@ import br.edu.senai.cac.ui.navigation.AppNavGraph
 import br.edu.senai.cac.ui.theme.CACTheme
 import br.edu.senai.cac.ui.viewmodel.KeyDetailViewModel
 import br.edu.senai.cac.ui.viewmodel.RoomDetailViewModel
+import br.edu.senai.cac.ui.viewmodel.TeacherDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -62,6 +63,7 @@ class MainActivity : ComponentActivity() {
 
                 val keyDetailViewModel: KeyDetailViewModel = hiltViewModel()
                 val roomDetailViewModel: RoomDetailViewModel = hiltViewModel()
+                val teacherDetailViewModel: TeacherDetailViewModel = hiltViewModel()
 
                 Scaffold(
                     modifier = Modifier.fillMaxSize(), topBar = {
@@ -112,7 +114,8 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.padding(innerPadding),
                         updateTitle = { title -> currentScreenTitle = title },
                         keyDetailViewModel = keyDetailViewModel,
-                        roomDetailViewModel = roomDetailViewModel
+                        roomDetailViewModel = roomDetailViewModel,
+                        teacherDetailViewModel = teacherDetailViewModel
                     )
                 }
             }
