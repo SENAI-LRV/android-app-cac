@@ -18,7 +18,7 @@ import br.edu.senai.cac.data.models.TeacherModel
 
 @Database(
     entities = [KeyModel::class, RoomModel::class, TeacherModel::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
