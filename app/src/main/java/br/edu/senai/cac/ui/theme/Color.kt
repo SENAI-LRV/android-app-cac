@@ -24,6 +24,7 @@ val ProDarkOnSurface = Color(0xFFE2E2E6)
 // Tema claro
 val ProLightPrimary = Color(0xFF0061A4)
 val ProLightSecondary = Color(0xFF526070)
+val ProLightTertiary = Color(0xFF006B4D)
 val ProLightOnPrimary = Color.White
 val ProLightOnSecondary = Color.White
 val ProLightOnTertiary = Color.White
