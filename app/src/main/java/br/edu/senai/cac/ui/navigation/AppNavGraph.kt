@@ -28,6 +28,7 @@ import br.edu.senai.cac.ui.TeacherDetailScreen
 import br.edu.senai.cac.ui.TeacherRegistrationScreen
 import br.edu.senai.cac.ui.viewmodel.KeyDetailViewModel
 import br.edu.senai.cac.ui.viewmodel.RoomDetailViewModel
+import br.edu.senai.cac.ui.viewmodel.TeacherDetailViewModel
 
 @Composable
 fun AppNavGraph(
@@ -35,7 +36,8 @@ fun AppNavGraph(
     navController: NavHostController,
     updateTitle: (String) -> Unit,
     keyDetailViewModel: KeyDetailViewModel,
-    roomDetailViewModel: RoomDetailViewModel
+    roomDetailViewModel: RoomDetailViewModel,
+    teacherDetailViewModel: TeacherDetailViewModel
 ) {
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -108,7 +110,14 @@ fun AppNavGraph(
         }
 
         composable(route = Screen.TeacherRegistration.route) {
-            TeacherRegistrationScreen(modifier = Modifier)
+            TeacherRegistrationScreen(
+                modifier = Modifier,
+                onNavigateBack = { navController.navigateUp() },
+                onSaveTeacher = { teacher ->
+                    teacherDetailViewModel.addTeacher(teacher)
+                    navController.navigateUp()
+                }
+            )
         }
 
         composable(route = Screen.TeacherDetail.route) {
