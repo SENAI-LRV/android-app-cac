@@ -27,13 +27,15 @@ import br.edu.senai.cac.ui.SettingsScreen
 import br.edu.senai.cac.ui.TeacherDetailScreen
 import br.edu.senai.cac.ui.TeacherRegistrationScreen
 import br.edu.senai.cac.ui.viewmodel.KeyDetailViewModel
+import br.edu.senai.cac.ui.viewmodel.RoomDetailViewModel
 
 @Composable
 fun AppNavGraph(
     modifier: Modifier,
     navController: NavHostController,
     updateTitle: (String) -> Unit,
-    keyDetailViewModel: KeyDetailViewModel
+    keyDetailViewModel: KeyDetailViewModel,
+    roomDetailViewModel: RoomDetailViewModel
 ) {
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -88,7 +90,8 @@ fun AppNavGraph(
         }
 
         composable(route = Screen.KeyRegistration.route) {
-            KeyRegistrationScreen(modifier = Modifier,
+            KeyRegistrationScreen(
+                modifier = Modifier,
                 onNavigateBack = { navController.navigateUp() },
                 onSaveKey = { key ->
                     keyDetailViewModel.addKey(key)
@@ -113,7 +116,14 @@ fun AppNavGraph(
         }
 
         composable(route = Screen.RoomRegistration.route) {
-            RoomRegistrationScreen(modifier = Modifier)
+            RoomRegistrationScreen(
+                modifier = Modifier,
+                onNavigateBack = { navController.navigateUp() },
+                onSaveRoom = { room ->
+                    roomDetailViewModel.addRoom(room)
+                    navController.navigateUp()
+                }
+            )
         }
 
         composable(route = Screen.RoomDetail.route) {
