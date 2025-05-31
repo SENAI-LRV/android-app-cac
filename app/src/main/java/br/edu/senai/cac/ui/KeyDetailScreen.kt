@@ -47,6 +47,7 @@ import br.edu.senai.cac.ui.viewmodel.KeyDetailViewModel
  * Tela de listagem e detalhes das chaves.
  * @param modifier Modificador para a tela.
  * @param updateTitle Função para atualizar o título da tela na TopAppBar.
+ * @param onNavigateBack Função para ser chamada quando o botão "Voltar" é pressionado.
  * @param keyDetailViewModel ViewModel para gerir os dados das chaves.
  * @author Miguel Nischor <miguel@docente.senai.br>
  */
@@ -54,6 +55,7 @@ import br.edu.senai.cac.ui.viewmodel.KeyDetailViewModel
 fun KeyDetailScreen(
     modifier: Modifier = Modifier,
     updateTitle: (String) -> Unit,
+    onNavigateBack: () -> Unit,
     keyDetailViewModel: KeyDetailViewModel = hiltViewModel()
 ) {
     var showDialog by remember { mutableStateOf(false) }
@@ -78,7 +80,8 @@ fun KeyDetailScreen(
             )
         } else {
             LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.weight(1f)
             ) {
                 items(keys) { key ->
                     KeyItem(
@@ -125,6 +128,13 @@ fun KeyDetailScreen(
                     }
                 }
             }
+        }
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(
+            onClick = onNavigateBack,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Voltar")
         }
     }
 }
@@ -177,8 +187,8 @@ fun KeyItem(key: KeyModel, onReserveClick: () -> Unit, onDeleteClick: () -> Unit
 fun PreviewKeyDetailScreen() {
     CACTheme {
         KeyDetailScreen(
-            updateTitle = {}
+            updateTitle = {},
+            onNavigateBack = {}
         )
     }
 }
-
