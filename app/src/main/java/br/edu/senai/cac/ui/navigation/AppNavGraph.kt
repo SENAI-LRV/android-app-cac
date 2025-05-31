@@ -121,7 +121,11 @@ fun AppNavGraph(
         }
 
         composable(route = Screen.TeacherDetail.route) {
-            TeacherDetailScreen(modifier = Modifier)
+            TeacherDetailScreen(
+                modifier = Modifier,
+                updateTitle = updateTitle,
+                teacherDetailViewModel = teacherDetailViewModel,
+            )
         }
 
         composable(route = Screen.RoomRegistration.route) {
@@ -136,7 +140,11 @@ fun AppNavGraph(
         }
 
         composable(route = Screen.RoomDetail.route) {
-            RoomDetailScreen(modifier = Modifier)
+            RoomDetailScreen(
+                modifier = Modifier,
+                updateTitle = updateTitle,
+                roomDetailViewModel = roomDetailViewModel
+            )
         }
     }
 }
