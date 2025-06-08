@@ -38,7 +38,8 @@ fun AdminScreen(
     onRoomRegistrationAction: () -> Unit,
     onKeyDetailsAction: () -> Unit,
     onTeacherDetailsAction: () -> Unit,
-    onRoomDetailsAction: () -> Unit
+    onRoomDetailsAction: () -> Unit,
+    onSettingsScreenAction: () -> Unit
 ) {
     Column(modifier = modifier.fillMaxSize()) {
         Text(
@@ -124,6 +125,30 @@ fun AdminScreen(
         ) {
             Text("Detalhes de Salas")
         }
+
+        Text(
+            text = "Configurações",
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 64.dp, start = 32.dp),
+            fontSize = 24.sp,
+            textAlign = TextAlign.Start
+        )
+
+        HorizontalDivider(
+            modifier = Modifier.padding(top = 8.dp, start = 16.dp, end = 16.dp, bottom = 16.dp),
+            thickness = 2.dp,
+            color = Color.Black
+        )
+
+        Button(
+            onClick = { onSettingsScreenAction() },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 4.dp, start = 8.dp, end = 8.dp)
+        ) {
+            Text("Abrir configurações")
+        }
     }
 }
 
@@ -141,5 +166,6 @@ fun PreviewAdminScreen() {
         onRoomRegistrationAction = {},
         onKeyDetailsAction = {},
         onTeacherDetailsAction = {},
-        onRoomDetailsAction = {})
+        onRoomDetailsAction = {},
+        onSettingsScreenAction = {})
 }
