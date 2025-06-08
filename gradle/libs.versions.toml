@@ -3,6 +3,8 @@ activityCompose = "1.10.1"
 agp = "8.10.1"
 composeBom = "2025.06.00"
 coreKtx = "1.16.0"
+coreTesting = "2.2.0"
+coroutinesTest = "1.8.1"
 espressoCore = "3.6.1"
 hilt = "2.56.2"
 hilt-android-gradle-plugin = "2.56.2"
@@ -14,12 +16,14 @@ kotlin = "2.0.21"
 lifecycleRuntimeCompose = "2.9.1"
 lifecycleRuntimeKtx = "2.9.1"
 lifecycleViewmodelKtx = "2.9.1"
+mockk = "1.13.11"
 navigationCompose = "2.9.0"
 room = "2.7.1"
 roomCompiler = "2.7.1"
 
 [libraries]
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-arch-core-testing = { group = "androidx.arch.core", name = "core-testing", version.ref = "coreTesting" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -41,6 +45,9 @@ hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt-compiler" }
 hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutinesTest" }
+mockk-agent-jvm = { group = "io.mockk", name = "mockk-agent-jvm", version.ref = "mockk" }
+mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
