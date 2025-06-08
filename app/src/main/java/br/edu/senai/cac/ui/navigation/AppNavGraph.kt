@@ -83,7 +83,8 @@ fun AppNavGraph(
                 onRoomRegistrationAction = { navController.navigate(route = Screen.RoomRegistration.route) },
                 onKeyDetailsAction = { navController.navigate(route = Screen.KeyDetail.route) },
                 onTeacherDetailsAction = { navController.navigate(route = Screen.TeacherDetail.route) },
-                onRoomDetailsAction = { navController.navigate(route = Screen.RoomDetail.route) }
+                onRoomDetailsAction = { navController.navigate(route = Screen.RoomDetail.route) },
+                onSettingsScreenAction = { navController.navigate(route = Screen.Settings.route) }
             )
         }
 
