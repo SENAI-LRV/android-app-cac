@@ -5,6 +5,7 @@
 [![Jetpack Compose](https://img.shields.io/badge/UI-Jetpack%20Compose-brightgreen.svg)](https://developer.android.com/jetpack/compose)
 [![Room](https://img.shields.io/badge/Database-Room-orange.svg)](https://developer.android.com/training/data-storage/room)
 [![License](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](LICENSE.md)
+[![Scc Count Badge](https://sloc.xyz/github/SENAI-LRV/android-app-cac/)](https://github.com/SENAI-LRV/android-app-cac/)
 
 Aplicativo Android desenvolvido para gerenciar a reserva de chaves de salas de aula no SENAI de Lucas do Rio Verde, facilitando o controle de acesso e organização para professores e funcionários.
 
