@@ -42,8 +42,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import br.edu.senai.cac.br.edu.senai.cac.ui.viewmodel.SettingsViewModel
 import br.edu.senai.cac.data.models.SettingsModel
-import br.edu.senai.cac.viewmodel.SettingsViewModel
 
 /**
  * Tela de configurações do aplicativo.
