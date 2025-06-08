@@ -87,9 +87,9 @@ dependencies {
     /* Implementações para compilação de lançamento */
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.room)
@@ -101,5 +101,9 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
 
     /* Implementações para compilação de teste */
+    testImplementation(libs.androidx.arch.core.testing)
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk.agent.jvm)
+    testImplementation(libs.mockk.android)
 }
