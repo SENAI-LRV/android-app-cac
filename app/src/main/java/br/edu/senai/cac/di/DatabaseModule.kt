@@ -11,10 +11,12 @@ import android.content.Context
 import androidx.room.Room
 import br.edu.senai.cac.data.dao.KeyDao
 import br.edu.senai.cac.data.dao.RoomDao
+import br.edu.senai.cac.data.dao.SettingsDao
 import br.edu.senai.cac.data.dao.TeacherDao
 import br.edu.senai.cac.data.database.AppDatabase
 import br.edu.senai.cac.data.repository.KeyRepository
 import br.edu.senai.cac.data.repository.RoomRepository
+import br.edu.senai.cac.data.repository.SettingsRepository
 import br.edu.senai.cac.data.repository.TeacherRepository
 import dagger.Module
 import dagger.Provides
@@ -62,4 +64,12 @@ object DatabaseModule {
     @Provides
     fun provideTeacherRepository(teacherDao: TeacherDao): TeacherRepository =
         TeacherRepository(teacherDao)
+
+    @Provides
+    fun provideSettingsDao(db: AppDatabase): SettingsDao =
+        db.settingsDao()
+
+    @Provides
+    fun provideSettingsRepository(settingsDao: SettingsDao): SettingsRepository =
+        SettingsRepository(settingsDao)
 }
