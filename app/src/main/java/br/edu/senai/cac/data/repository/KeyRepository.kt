@@ -31,6 +31,14 @@ class KeyRepository(private val keyDao: KeyDao) {
         keyDao.delete(key)
     }
 
+    suspend fun deleteById(id: String) {
+        keyDao.deleteById(id)
+    }
+
+    suspend fun deleteAll(keys: List<KeyModel>) {
+        keyDao.deleteAll()
+    }
+
     suspend fun getKeyById(id: String): KeyModel? {
         return keyDao.getById(id)
     }
