@@ -32,6 +32,9 @@ interface KeyDao {
     @Delete
     suspend fun delete(key: KeyModel)
 
+    @Query("DELETE FROM keys WHERE id = :id")
+    suspend fun deleteById(id: String)
+
     @Query("SELECT * FROM keys WHERE id = :id")
     suspend fun getById(id: String): KeyModel?
 
