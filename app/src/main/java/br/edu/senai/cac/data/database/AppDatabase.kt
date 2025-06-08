@@ -11,18 +11,21 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import br.edu.senai.cac.data.dao.KeyDao
 import br.edu.senai.cac.data.dao.RoomDao
+import br.edu.senai.cac.data.dao.SettingsDao
 import br.edu.senai.cac.data.dao.TeacherDao
 import br.edu.senai.cac.data.models.KeyModel
 import br.edu.senai.cac.data.models.RoomModel
+import br.edu.senai.cac.data.models.SettingsModel
 import br.edu.senai.cac.data.models.TeacherModel
 
 @Database(
-    entities = [KeyModel::class, RoomModel::class, TeacherModel::class],
-    version = 2,
+    entities = [KeyModel::class, RoomModel::class, TeacherModel::class, SettingsModel::class],
+    version = 3,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun keyDao(): KeyDao
     abstract fun roomDao(): RoomDao
     abstract fun teacherDao(): TeacherDao
+    abstract fun settingsDao(): SettingsDao
 }
