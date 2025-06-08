@@ -64,6 +64,26 @@ class KeyDetailViewModel @Inject constructor(
     }
 
     /**
+     * Deleta uma chave pelo seu ID.
+     * @param keyId O ID da chave a ser deletada.
+     */
+    fun deleteKeyById(keyId: String) {
+        viewModelScope.launch {
+            repository.deleteById(keyId)
+        }
+    }
+
+    /**
+     * Deleta todas as chaves fornecidas.
+     * @param keys A lista de KeyModel das chaves a serem deletadas.
+     */
+    fun deleteAllKeys(keys: List<KeyModel>) {
+        viewModelScope.launch {
+            repository.deleteAll(keys)
+        }
+    }
+
+    /**
      * Devolve uma chave, atualizando seu status para disponível.
      * @param key O KeyModel da chave a ser devolvida.
      */
